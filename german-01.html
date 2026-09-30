@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>독일어 기초 1탄 · 발음과 읽기</title>
+<meta name="description" content="독일어 스터디 1회차 — 발음과 읽기 규칙 (40분)">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --ink:#1d1b18; --muted:#6b665e; --line:#e6e1d7;
+  --accent:#c8102e; --accent-soft:#fbe9ec; --gold:#e0a800; --gold-soft:#fff6d6;
+  --practice:#1f6f5c; --practice-soft:#e3f2ed;
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141311; --surface:#1f1d1a; --ink:#f1ede6; --muted:#a39d93; --line:#34302a;
+    --accent:#ff5a6e; --accent-soft:#3a1c21; --gold:#ffc933; --gold-soft:#342b12;
+    --practice:#5fcfae; --practice-soft:#15302a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141311; --surface:#1f1d1a; --ink:#f1ede6; --muted:#a39d93; --line:#34302a;
+  --accent:#ff5a6e; --accent-soft:#3a1c21; --gold:#ffc933; --gold-soft:#342b12;
+  --practice:#5fcfae; --practice-soft:#15302a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Malgun Gothic","Noto Sans KR",sans-serif;
+  line-height:1.6;font-size:16px;-webkit-text-size-adjust:100%;word-break:keep-all}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 80px}
+
+/* header */
+.hero{padding:28px 0 20px}
+.flag{display:flex;height:6px;width:72px;border-radius:3px;overflow:hidden;margin-bottom:16px}
+.flag i{flex:1}.flag i:nth-child(1){background:#000}.flag i:nth-child(2){background:#dd0000}.flag i:nth-child(3){background:#ffce00}
+.hero small{color:var(--muted);font-weight:600;letter-spacing:.02em}
+.hero h1{font-size:28px;line-height:1.25;margin:6px 0 10px}
+.goal{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-size:15px}
+.goal b{color:var(--accent)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:0 -16px;padding:10px 16px}
+nav .chips{position:relative;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav .chips::-webkit-scrollbar{display:none}
+nav a{flex:none;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;
+  border:1px solid var(--line);color:var(--ink);background:var(--surface);white-space:nowrap}
+nav a.p{border-color:var(--practice);color:var(--practice)}
+nav a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* timeline */
+.timeline{display:flex;gap:3px;margin:16px 0 4px;height:8px;border-radius:4px;overflow:hidden}
+.timeline span{background:var(--accent)}
+.timeline span.p{background:var(--practice)}
+.timeline span.e{background:var(--muted)}
+.tl-legend{display:flex;gap:14px;font-size:12px;color:var(--muted)}
+.tl-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+
+/* section */
+section{padding-top:28px}
+.part-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.badge.p{background:var(--practice-soft);color:var(--practice)}
+.time{font-size:12px;color:var(--muted);margin-left:auto}
+h2{font-size:22px;margin:4px 0 14px;line-height:1.3}
+h3{font-size:17px;margin:0 0 4px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+h3 .sp{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:20px;color:var(--accent)}
+h3 .snd{font-size:15px;color:var(--muted);font-weight:600}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.box p{margin:4px 0 10px;font-size:15px}
+.note{font-size:14px;color:var(--muted);margin:10px 0 0}
+.tip{background:var(--gold-soft);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px}
+.tip b{color:var(--ink)}
+
+/* word chips */
+.words{display:flex;flex-wrap:wrap;gap:8px}
+.w{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;
+  padding:8px 12px;font:inherit;cursor:pointer;display:inline-flex;flex-direction:column;align-items:flex-start;min-width:84px;text-align:left}
+.w b{font-size:17px;font-weight:700}
+.w span{font-size:13px;color:var(--muted)}
+.w:active{transform:scale(.97)}
+.w.speaking{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.w b::after{content:" 🔊";font-size:11px;opacity:.45}
+
+/* practice */
+.practice-intro{background:var(--practice-soft);color:var(--ink);border-radius:var(--radius);padding:14px 16px;font-size:15px;margin-bottom:12px}
+.practice-intro b{color:var(--practice)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media (min-width:480px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;
+  padding:12px;font:inherit;text-align:left;cursor:pointer;min-height:84px;position:relative}
+.card .n{position:absolute;top:8px;right:10px;font-size:11px;color:var(--muted)}
+.card b{display:block;font-size:19px}
+.card .ans{display:block;font-size:14px;color:var(--practice);font-weight:600;margin-top:4px;visibility:hidden}
+.card .ans em{font-style:normal;color:var(--muted);font-weight:400}
+.card .hint{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.card.open .ans{visibility:visible}
+.card.open .hint{display:none}
+.tools{display:flex;gap:8px;margin:10px 0 0;flex-wrap:wrap}
+.btn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px;font-weight:600;
+  padding:8px 14px;border-radius:10px;cursor:pointer}
+.btn.primary{background:var(--practice);border-color:var(--practice);color:#fff}
+
+/* compound */
+.comp{display:flex;flex-direction:column;gap:8px}
+.comp .card{min-height:0}
+.split{font-size:14px;color:var(--muted);margin-top:2px}
+.split i{font-style:normal;color:var(--accent);font-weight:700;padding:0 2px}
+
+/* quiz */
+.quiz-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.quiz-row:last-child{border-bottom:0}
+.quiz-row .q{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:20px;font-weight:700;width:44px}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.opt{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.opt.right{background:var(--practice);border-color:var(--practice);color:#fff}
+.opt.wrong{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600}
+td:first-child{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;color:var(--accent);white-space:nowrap}
+
+/* vocab */
+.vocab{display:grid;grid-template-columns:1fr;gap:0}
+.vocab button{appearance:none;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;text-align:left;
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 2px;cursor:pointer}
+.vocab button:last-child{border-bottom:0}
+.vocab b{font-size:17px}
+.vocab span{font-size:14px;color:var(--muted);text-align:right}
+
+/* sentence */
+.sentence{font-size:24px;font-weight:800;line-height:1.35;margin:4px 0}
+.sentence .blank{display:inline-block;min-width:110px;border-bottom:3px solid var(--gold);color:var(--gold)}
+.ko-trans{color:var(--muted);font-size:15px;margin-bottom:6px}
+
+/* closing */
+.big4{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.big4 div{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:14px;text-align:center}
+.big4 b{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:24px;color:var(--accent)}
+.big4 span{font-size:18px;font-weight:700}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:36px}
+
+.tts-warn{display:none;font-size:13px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="flag"><i></i><i></i><i></i></div>
+  <small>독일어 스터디 · 1회차</small>
+  <h1>독일어 발음과<br>읽기 규칙</h1>
+  <div class="goal">🎯 <b>오늘의 목표</b><br>처음 보는 독일어 단어도 발음 규칙으로 <b>직접 읽어본다.</b><br>
+    <span style="color:var(--muted);font-size:14px">독일어는 철자와 발음이 비교적 규칙적이라, 핵심 규칙 몇 개만 알면 상당 부분 읽을 수 있어요.</span></div>
+
+  <div class="timeline" aria-hidden="true">
+    <span style="flex:8"></span><span class="p" style="flex:5"></span>
+    <span style="flex:10"></span><span class="p" style="flex:5"></span>
+    <span style="flex:5"></span><span class="p" style="flex:5"></span>
+    <span class="e" style="flex:2"></span>
+  </div>
+  <div class="tl-legend"><span><i style="background:var(--accent)"></i>설명</span><span><i style="background:var(--practice)"></i>실전</span><span><i style="background:var(--muted)"></i>마무리</span><span style="margin-left:auto">총 40분</span></div>
+  <p class="note">💡 단어를 누르면 독일어 발음이 재생돼요. (소리가 안 나면 무음 모드를 해제해 주세요)</p>
+  <p class="tts-warn" id="ttsWarn">이 브라우저는 음성 재생을 지원하지 않아요.</p>
+</header>
+
+<nav><div class="chips">
+  <a href="#s1">① 이중모음</a>
+  <a href="#p1" class="p">실전 1</a>
+  <a href="#s2">② 자음</a>
+  <a href="#p2" class="p">실전 2</a>
+  <a href="#s3">③ 특수철자</a>
+  <a href="#p3" class="p">실전 3</a>
+  <a href="#end">마무리</a>
+</div></nav>
+
+<!-- ================= 설명 1 ================= -->
+<section id="s1">
+  <div class="part-head"><span class="badge">설명 1</span><span class="time">⏱ 8분</span></div>
+  <h2>가장 먼저 외울 이중모음</h2>
+
+  <div class="box">
+    <h3><span class="sp">ei / ai</span><span class="snd">→ [아이]</span></h3>
+    <p>영어식 ‘에이’가 아니에요!</p>
+    <div class="words">
+      <button class="w"><b>mein</b><span>마인</span></button>
+      <button class="w"><b>dein</b><span>다인</span></button>
+      <button class="w"><b>nein</b><span>나인</span></button>
+      <button class="w"><b>drei</b><span>드라이</span></button>
+      <button class="w"><b>klein</b><span>클라인</span></button>
+      <button class="w"><b>heißen</b><span>하이센</span></button>
+    </div>
+    <div class="tip">🧠 <b>E + I인데 소리는 “아이”</b></div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">ie</span><span class="snd">→ [이:] 길게</span></h3>
+    <div class="words">
+      <button class="w"><b>Liebe</b><span>리베</span></button>
+      <button class="w"><b>sieben</b><span>지벤</span></button>
+      <button class="w"><b>vier</b><span>피어</span></button>
+      <button class="w"><b>spielen</b><span>슈필렌</span></button>
+      <button class="w"><b>Wien</b><span>빈</span></button>
+    </div>
+    <div class="tip">⚠️ <b>순서가 바뀌면 소리도 완전히 달라져요</b><br>ei → 아이 (mein 마인) &nbsp;/&nbsp; ie → 이 (Wien 빈)</div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">eu / äu</span><span class="snd">→ [오이]</span></h3>
+    <p>eu와 äu는 <b>같은 소리</b>예요.</p>
+    <div class="words">
+      <button class="w"><b>heute</b><span>호이테</span></button>
+      <button class="w"><b>Leute</b><span>로이테</span></button>
+      <button class="w"><b>Deutsch</b><span>도이치</span></button>
+      <button class="w"><b>Europa</b><span>오이로파</span></button>
+      <button class="w"><b>Häuser</b><span>호이저</span></button>
+    </div>
+    <div class="tip">🧠 <b>eu = äu = 오이</b> → Deutsch 도이치</div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">au</span><span class="snd">→ [아우]</span></h3>
+    <div class="words">
+      <button class="w"><b>Haus</b><span>하우스</span></button>
+      <button class="w"><b>Auto</b><span>아우토</span></button>
+      <button class="w"><b>Frau</b><span>프라우</span></button>
+      <button class="w"><b>auch</b><span>아우흐</span></button>
+      <button class="w"><b>kaufen</b><span>카우펜</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 실전 1 ================= -->
+<section id="p1">
+  <div class="part-head"><span class="badge p">실전 1</span><span class="time">⏱ 5분</span></div>
+  <h2>이중모음 퀴즈</h2>
+  <div class="practice-intro">같은 소리가 나는 것끼리 <b>연결</b>해 보세요. 버튼을 눌러 정답을 확인!</div>
+
+  <div class="box" id="quiz">
+    <div class="quiz-row" data-answer="오이"><span class="q">eu</span><div class="opts"></div></div>
+    <div class="quiz-row" data-answer="아이"><span class="q">ei</span><div class="opts"></div></div>
+    <div class="quiz-row" data-answer="이"><span class="q">ie</span><div class="opts"></div></div>
+    <div class="quiz-row" data-answer="아우"><span class="q">au</span><div class="opts"></div></div>
+  </div>
+
+  <div class="practice-intro" style="margin-top:16px">👀 이번엔 <b>처음 보는 단어</b>! 소리 내어 읽고, 카드를 눌러 확인하세요.</div>
+  <div class="grid reveal">
+    <button class="card"><span class="n">1</span><b>Bein</b><span class="ans">바인 <em>· 다리</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">2</span><b>Brief</b><span class="ans">브리프 <em>· 편지</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">3</span><b>neu</b><span class="ans">노이 <em>· 새로운</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">4</span><b>Baum</b><span class="ans">바움 <em>· 나무</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">5</span><b>Freund</b><span class="ans">프로인트 <em>· 친구</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">6</span><b>Bier</b><span class="ans">비어 <em>· 맥주</em></span><span class="hint">탭해서 확인</span></button>
+  </div>
+  <div class="tools"><button class="btn" data-reset=".reveal">🔄 다시 가리기</button></div>
+</section>
+
+<!-- ================= 설명 2 ================= -->
+<section id="s2">
+  <div class="part-head"><span class="badge">설명 2</span><span class="time">⏱ 10분</span></div>
+  <h2>꼭 알아야 하는 자음</h2>
+
+  <div class="box">
+    <h3><span class="sp">sch</span><span class="snd">→ [슈]</span></h3>
+    <p>영어의 sh와 비슷해요.</p>
+    <div class="words">
+      <button class="w"><b>Schule</b><span>슐레</span></button>
+      <button class="w"><b>schön</b><span>쇤</span></button>
+      <button class="w"><b>schreiben</b><span>슈라이벤</span></button>
+      <button class="w"><b>Tisch</b><span>티슈</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">sp / st</span><span class="snd">→ 단어 맨 앞에서 [슈프] / [슈트]</span></h3>
+    <div class="words">
+      <button class="w"><b>spielen</b><span>슈필렌</span></button>
+      <button class="w"><b>Sport</b><span>슈포르트</span></button>
+      <button class="w"><b>sprechen</b><span>슈프레헨</span></button>
+      <button class="w"><b>Straße</b><span>슈트라세</span></button>
+      <button class="w"><b>Stadt</b><span>슈타트</span></button>
+      <button class="w"><b>stehen</b><span>슈테엔</span></button>
+    </div>
+    <p class="note">단어 중간이나 끝에서는 항상 이렇게 읽지는 않아요.</p>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">w</span><span class="snd">→ 영어의 [v] 소리</span></h3>
+    <div class="words">
+      <button class="w"><b>Wasser</b><span>바서</span></button>
+      <button class="w"><b>Wein</b><span>바인</span></button>
+      <button class="w"><b>Wien</b><span>빈</span></button>
+      <button class="w"><b>wohnen</b><span>보넨</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">v</span><span class="snd">→ 보통 [f]</span></h3>
+    <div class="words">
+      <button class="w"><b>Vater</b><span>파터</span></button>
+      <button class="w"><b>vier</b><span>피어</span></button>
+      <button class="w"><b>von</b><span>폰</span></button>
+      <button class="w"><b>Vogel</b><span>포겔</span></button>
+    </div>
+    <p class="note">외래어는 영어식 [v]도 있어요 → <b>Video</b>, <b>Vase</b></p>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">z</span><span class="snd">→ [츠]</span></h3>
+    <p>영어처럼 ‘즈’로 읽지 않아요!</p>
+    <div class="words">
+      <button class="w"><b>zwei</b><span>츠바이</span></button>
+      <button class="w"><b>zehn</b><span>첸</span></button>
+      <button class="w"><b>Zeit</b><span>차이트</span></button>
+      <button class="w"><b>Zeitung</b><span>차이퉁</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">j</span><span class="snd">→ 영어의 [y] 소리</span></h3>
+    <div class="words">
+      <button class="w"><b>ja</b><span>야</span></button>
+      <button class="w"><b>Jahr</b><span>야어</span></button>
+      <button class="w"><b>Januar</b><span>야누아어</span></button>
+      <button class="w"><b>jung</b><span>융</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">ch</span><span class="snd">→ 두 가지 소리</span></h3>
+    <p><b>① ich 계열</b> — i, e, ä, ö, ü 뒤 · 부드럽게<br>
+      <span style="color:var(--muted);font-size:14px">‘히’와 ‘시’ 사이의 마찰음으로 연습해도 OK</span></p>
+    <div class="words">
+      <button class="w"><b>ich</b><span>이히</span></button>
+      <button class="w"><b>nicht</b><span>니히트</span></button>
+      <button class="w"><b>Milch</b><span>밀히</span></button>
+      <button class="w"><b>sprechen</b><span>슈프레헨</span></button>
+    </div>
+    <p style="margin-top:14px"><b>② ach 계열</b> — a, o, u, au 뒤 · 목 안쪽에서 강하게<br>
+      <span style="color:var(--muted);font-size:14px">‘ㅋ’처럼 끊지 말고, 목 뒤에서 공기를 마찰!</span></p>
+    <div class="words">
+      <button class="w"><b>Bach</b><span>바흐</span></button>
+      <button class="w"><b>machen</b><span>마헨</span></button>
+      <button class="w"><b>Buch</b><span>부흐</span></button>
+      <button class="w"><b>auch</b><span>아우흐</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 실전 2 ================= -->
+<section id="p2">
+  <div class="part-head"><span class="badge p">실전 2</span><span class="time">⏱ 5분</span></div>
+  <h2>직접 읽어보기 15</h2>
+  <div class="practice-intro">뜻을 보지 말고 <b>먼저 소리 내어</b> 읽어보세요. 그다음 카드를 탭!</div>
+  <div class="grid reveal2">
+    <button class="card"><span class="n">1</span><b>mein</b><span class="ans">마인 <em>· 나의</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">2</span><b>drei</b><span class="ans">드라이 <em>· 3</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">3</span><b>Liebe</b><span class="ans">리베 <em>· 사랑</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">4</span><b>Wien</b><span class="ans">빈 <em>· 비엔나</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">5</span><b>heute</b><span class="ans">호이테 <em>· 오늘</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">6</span><b>Deutsch</b><span class="ans">도이치 <em>· 독일어</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">7</span><b>Haus</b><span class="ans">하우스 <em>· 집</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">8</span><b>Frau</b><span class="ans">프라우 <em>· 여성</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">9</span><b>Schule</b><span class="ans">슐레 <em>· 학교</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">10</span><b>Sport</b><span class="ans">슈포르트 <em>· 운동</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">11</span><b>Straße</b><span class="ans">슈트라세 <em>· 거리</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">12</span><b>Wasser</b><span class="ans">바서 <em>· 물</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">13</span><b>Vater</b><span class="ans">파터 <em>· 아버지</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">14</span><b>zwei</b><span class="ans">츠바이 <em>· 2</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><span class="n">15</span><b>Jahr</b><span class="ans">야어 <em>· 해, 년</em></span><span class="hint">탭해서 확인</span></button>
+  </div>
+  <div class="tools">
+    <button class="btn primary" data-openall=".reveal2">전체 정답 보기</button>
+    <button class="btn" data-reset=".reveal2">🔄 다시 가리기</button>
+  </div>
+</section>
+
+<!-- ================= 설명 3 ================= -->
+<section id="s3">
+  <div class="part-head"><span class="badge">설명 3</span><span class="time">⏱ 5분</span></div>
+  <h2>특수 철자 & 모음 길이</h2>
+
+  <div class="box">
+    <h3><span class="sp">ä</span><span class="snd">→ ‘에’에 가까운 소리</span></h3>
+    <div class="words">
+      <button class="w"><b>Mädchen</b><span>매트헨</span></button>
+      <button class="w"><b>spät</b><span>슈패트</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">ö</span><span class="snd">→ ‘에’ 입 모양 + 입술 둥글게</span></h3>
+    <div class="words">
+      <button class="w"><b>schön</b><span>쇤</span></button>
+      <button class="w"><b>hören</b><span>회렌</span></button>
+      <button class="w"><b>Köln</b><span>쾰른</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">ü</span><span class="snd">→ ‘이’ 혀 위치 + 입술 둥글게</span></h3>
+    <div class="words">
+      <button class="w"><b>über</b><span>위버</span></button>
+      <button class="w"><b>fünf</b><span>퓐프</span></button>
+      <button class="w"><b>Tür</b><span>튀어</span></button>
+      <button class="w"><b>München</b><span>뮌헨</span></button>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3><span class="sp">ß</span><span class="snd">→ ss와 같은 [s]</span></h3>
+    <div class="words">
+      <button class="w"><b>Straße</b><span>슈트라세</span></button>
+      <button class="w"><b>groß</b><span>그로스</span></button>
+      <button class="w"><b>heißen</b><span>하이센</span></button>
+    </div>
+    <p class="note">이름은 <b>Eszett</b>(에스체트) 또는 <b>scharfes S</b>라고 해요.</p>
+  </div>
+
+  <div class="box">
+    <h3>⏳ 모음은 길게? 짧게?</h3>
+    <p>독일어는 모음을 <b>길게 읽는지 짧게 읽는지</b>가 중요해요. 길게 읽는 대표 형태 두 가지:</p>
+    <p style="margin-bottom:6px"><b>모음 + h</b> <span style="color:var(--muted);font-size:14px">— h가 모음을 늘려줘요</span></p>
+    <div class="words">
+      <button class="w"><b>gehen</b><span>게엔</span></button>
+      <button class="w"><b>sehen</b><span>제엔</span></button>
+      <button class="w"><b>wohnen</b><span>보넨</span></button>
+    </div>
+    <p style="margin:14px 0 6px"><b>같은 모음 두 개</b></p>
+    <div class="words">
+      <button class="w"><b>Meer</b><span>메어</span></button>
+      <button class="w"><b>See</b><span>제</span></button>
+      <button class="w"><b>Kaffee</b><span>카페</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 실전 3 ================= -->
+<section id="p3">
+  <div class="part-head"><span class="badge p">실전 3</span><span class="time">⏱ 5분</span></div>
+  <h2>긴 단어 쪼개 읽기 & 자기소개</h2>
+  <div class="practice-intro">독일어 긴 단어는 대부분 <b>여러 단어가 합쳐진 것</b>. 한 덩어리로 읽지 말고 나눠서 읽어보세요!</div>
+
+  <div class="comp reveal3">
+    <button class="card"><b>Deutschland</b><div class="split">Deutsch<i>+</i>Land</div><span class="ans">도이칠란트 <em>· 독일</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><b>Flughafen</b><div class="split">Flug<i>+</i>Hafen</div><span class="ans">플룩하펜 <em>· 공항</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><b>Krankenhaus</b><div class="split">Kranken<i>+</i>Haus</div><span class="ans">크랑켄하우스 <em>· 병원</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><b>Wochenende</b><div class="split">Wochen<i>+</i>Ende</div><span class="ans">보헨엔데 <em>· 주말</em></span><span class="hint">탭해서 확인</span></button>
+    <button class="card"><b>Weihnachtsmarkt</b><div class="split">Weihnachten<i>+</i>Markt</div><span class="ans">바이나흐츠마르크트 <em>· 크리스마스 마켓</em></span><span class="hint">탭해서 확인</span></button>
+  </div>
+  <div class="tools"><button class="btn" data-reset=".reveal3">🔄 다시 가리기</button></div>
+
+  <h3 style="margin-top:24px">🗣 오늘의 한 문장</h3>
+  <div class="box">
+    <div class="sentence">Ich heiße <span class="blank">&nbsp;</span>.</div>
+    <div class="ko-trans">제 이름은 ______입니다.</div>
+    <div class="sentence" style="font-size:21px;margin-top:14px">Wie heißen Sie?</div>
+    <div class="ko-trans">성함이 어떻게 되세요?</div>
+    <div class="tools">
+      <button class="btn" data-say="Ich heiße Anna.">🔊 Ich heiße …</button>
+      <button class="btn" data-say="Wie heißen Sie?">🔊 Wie heißen Sie?</button>
+    </div>
+    <div class="tip">👥 <b>옆 사람과 짝 연습!</b><br>A: Wie heißen Sie? → B: Ich heiße ○○. → 역할 바꾸기</div>
+  </div>
+</section>
+
+<!-- ================= 마무리 ================= -->
+<section id="end">
+  <div class="part-head"><span class="badge" style="background:var(--line);color:var(--ink)">마무리</span><span class="time">⏱ 2분</span></div>
+  <h2>오늘 반드시 기억할 네 가지</h2>
+  <div class="big4">
+    <div><b>ei</b><span>아이</span></div>
+    <div><b>ie</b><span>이</span></div>
+    <div><b>eu / äu</b><span>오이</span></div>
+    <div><b>au</b><span>아우</span></div>
+  </div>
+  <p class="note" style="text-align:center">오늘은 뜻을 외우는 것보다 <b>철자를 보고 소리 내어 읽는 것</b>이 목표!</p>
+
+  <h3 style="margin-top:28px">📋 핵심 규칙 한눈에</h3>
+  <div class="box" style="padding:6px 12px">
+    <table>
+      <thead><tr><th>철자</th><th>발음</th><th>예시</th></tr></thead>
+      <tbody>
+        <tr><td>ei / ai</td><td>아이</td><td>mein, drei</td></tr>
+        <tr><td>ie</td><td>이</td><td>sieben, Wien</td></tr>
+        <tr><td>eu / äu</td><td>오이</td><td>heute, Deutsch</td></tr>
+        <tr><td>au</td><td>아우</td><td>Haus, Frau</td></tr>
+        <tr><td>sch</td><td>슈</td><td>Schule</td></tr>
+        <tr><td>sp</td><td>슈프</td><td>Sport</td></tr>
+        <tr><td>st</td><td>슈트</td><td>Straße</td></tr>
+        <tr><td>w</td><td>v 계열</td><td>Wasser</td></tr>
+        <tr><td>v</td><td>주로 f</td><td>Vater</td></tr>
+        <tr><td>z</td><td>츠</td><td>zwei</td></tr>
+        <tr><td>j</td><td>y 계열</td><td>ja</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:28px">📚 오늘의 필수 단어</h3>
+  <div class="box vocab" style="padding:4px 14px">
+    <button data-say="Hallo"><b>Hallo</b><span>안녕하세요</span></button>
+    <button data-say="Danke"><b>Danke</b><span>감사합니다</span></button>
+    <button data-say="Bitte"><b>Bitte</b><span>부탁합니다 / 천만에요</span></button>
+    <button data-say="Ja"><b>Ja</b><span>네</span></button>
+    <button data-say="Nein"><b>Nein</b><span>아니요</span></button>
+    <button data-say="Deutsch"><b>Deutsch</b><span>독일어 / 독일의</span></button>
+    <button data-say="Deutschland"><b>Deutschland</b><span>독일</span></button>
+    <button data-say="ich"><b>ich</b><span>나</span></button>
+    <button data-say="Sie"><b>Sie</b><span>당신 / 여러분(존칭)</span></button>
+    <button data-say="Tschüss"><b>Tschüss</b><span>안녕 / 잘 가요</span></button>
+  </div>
+
+  <footer>Bis zum nächsten Mal! 👋<br>다음 시간에 만나요</footer>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis, voice = null;
+  function pickVoice(){
+    if(!synth) return;
+    var vs = synth.getVoices();
+    voice = vs.find(function(v){return v.lang==='de-DE';}) || vs.find(function(v){return /^de/i.test(v.lang);}) || null;
+  }
+  if(synth){ pickVoice(); synth.onvoiceschanged = pickVoice; }
+  else { document.getElementById('ttsWarn').style.display='block'; }
+
+  function say(text, el){
+    if(!synth) return;
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'de-DE'; u.rate = 0.85;
+    if(voice) u.voice = voice;
+    if(el){ el.classList.add('speaking'); u.onend = u.onerror = function(){ el.classList.remove('speaking'); }; }
+    synth.speak(u);
+  }
+
+  // word chips
+  document.querySelectorAll('.w').forEach(function(b){
+    b.addEventListener('click', function(){ say(b.querySelector('b').textContent, b); });
+  });
+  // explicit data-say
+  document.querySelectorAll('[data-say]').forEach(function(b){
+    b.addEventListener('click', function(){ say(b.getAttribute('data-say')); });
+  });
+  // reveal cards: 1st tap = reveal + speak, later taps = speak
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('click', function(){
+      c.classList.add('open');
+      say(c.querySelector('b').textContent);
+    });
+  });
+  document.querySelectorAll('[data-reset]').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll(b.getAttribute('data-reset')+' .card').forEach(function(c){ c.classList.remove('open'); });
+    });
+  });
+  document.querySelectorAll('[data-openall]').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll(b.getAttribute('data-openall')+' .card').forEach(function(c){ c.classList.add('open'); });
+    });
+  });
+
+  // quiz
+  var choices = ['아이','아우','이','오이'];
+  document.querySelectorAll('.quiz-row').forEach(function(row){
+    var ans = row.getAttribute('data-answer'), box = row.querySelector('.opts');
+    choices.forEach(function(ch){
+      var o = document.createElement('button');
+      o.className='opt'; o.textContent=ch;
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('wrong'); });
+        if(ch===ans){ o.classList.add('right'); say(row.querySelector('.q').textContent==='eu'?'heute':row.querySelector('.q').textContent==='ei'?'mein':row.querySelector('.q').textContent==='ie'?'Liebe':'Haus'); }
+        else o.classList.add('wrong');
+      });
+      box.appendChild(o);
+    });
+  });
+
+  // nav highlight
+  var links = document.querySelectorAll('nav a');
+  var secs = Array.prototype.map.call(links, function(a){ return document.querySelector(a.getAttribute('href')); });
+  function onScroll(){
+    var y = window.scrollY + 90, idx = -1;
+    secs.forEach(function(s,i){ if(s.offsetTop <= y) idx = i; });
+    links.forEach(function(a,i){
+      var on = i===idx;
+      if(on && !a.classList.contains('on')){
+        // 페이지 스크롤을 건드리지 않고 탭 줄만 가로로 이동
+        var bar = a.parentNode;
+        bar.scrollLeft = a.offsetLeft - (bar.clientWidth - a.offsetWidth)/2;
+      }
+      a.classList.toggle('on', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
